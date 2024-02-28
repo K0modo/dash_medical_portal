@@ -2,7 +2,7 @@ import pandas as pd
 import pathlib
 
 PATH = pathlib.Path(__file__).parent
-DATA_PATH = PATH.joinpath("../member_store").resolve()
+DATA_PATH = PATH.joinpath("member_store").resolve()
 
 data = pd.read_csv(DATA_PATH.joinpath('data_members.csv'))
 data_load = data.to_dict('records')
