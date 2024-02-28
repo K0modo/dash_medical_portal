@@ -143,9 +143,9 @@ def make_dash_bar4(table, log_scale):
     )
 
     fig.update_layout(
-        title_text=f"Total Charges vs Number Items Billed",
-        title_x=0.5,
-        title_font={'size': 24},
+        # title_text="Total Charges vs Number Items Billed",
+        # title_x=0.5,
+        # title_font={'size': 24},
         font=font,
         legend=dict(
             yanchor='top',
@@ -206,9 +206,9 @@ def make_dash_scatter1(table, spec_list, log_scale):
                      )
 
     fig.update_layout(
-        title='Line Item Charges by Specialty',
-        title_x=0.5,
-        title_font=title_font,
+        # title='Line Item Charges by Specialty',
+        # title_x=0.5,
+        # title_font=title_font,
         font=font,
     )
 

@@ -2,7 +2,6 @@ from dash import html, dcc
 import dash_bootstrap_components as dbc
 from src.nav_and_utilities import ids
 
-
 ##############################################
 #         COMPONENTS FOR LAYOUT FILE
 ##############################################
@@ -11,11 +10,9 @@ from src.nav_and_utilities import ids
 # Style for dbc.cards below
 card_style = 'text-center text-body-emphasis py-2 bg-primary border rounded-4'
 
-
 title_box = html.H2(id=ids.MEM_TITLE_DASHBOARD,
                     className='text-secondary mt-3'
                     )
-
 
 member_dropdown_box = dbc.Container(
     [
@@ -43,7 +40,6 @@ member_dropdown_box = dbc.Container(
     ]
 )
 
-
 mem_ann_charge = dbc.Card(
     [
         html.H4('Charges'),
@@ -51,7 +47,6 @@ mem_ann_charge = dbc.Card(
     ],
     className=card_style,
 )
-
 
 mem_ann_average = dbc.Card(
     [
@@ -61,7 +56,6 @@ mem_ann_average = dbc.Card(
     className=card_style
 )
 
-
 mem_ann_claims = dbc.Card(
     [
         html.H4('Claims'),
@@ -69,7 +63,6 @@ mem_ann_claims = dbc.Card(
     ],
     className=card_style
 )
-
 
 mem_ann_items = dbc.Card(
     [
@@ -79,12 +72,10 @@ mem_ann_items = dbc.Card(
     className=card_style
 )
 
-
-specialty_section_title = html.H3("Annual Summary of Charges by Specialty",
-                                  className='text-center',
-                                  style={'color': '#32FBE2'}
-                                  )
-
+bar_line_title = html.H3("Line Item Charges by Specialty",
+                         className='text-center',
+                         style={'color': '#32FBE2'}
+                         )
 
 specialty_bar_log_radio_box = dbc.Container(
     [
@@ -101,6 +92,10 @@ specialty_bar_log_radio_box = dbc.Container(
     ]
 )
 
+specialty_scatter_title = html.H3("Total Charges vs Number Items Billed",
+                                  className='text-center',
+                                  style={'color': '#32FBE2'}
+                                  )
 
 specialty_scatter_log_radio_box = dbc.Container(
     [

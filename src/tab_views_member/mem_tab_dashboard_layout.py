@@ -109,7 +109,7 @@ def render_member_tab_dashboard():
                 [
                     dbc.Col(
                         [
-                            M.specialty_section_title
+                            M.bar_line_title
                         ],
                     )
                 ],
@@ -126,7 +126,7 @@ def render_member_tab_dashboard():
 
                     dbc.Col(className='col-3')
                 ],
-                className='mt-5'
+                className='mt-4'
             ),
             dbc.Row(
                 [
@@ -137,6 +137,18 @@ def render_member_tab_dashboard():
                     )
                 ],
                 className='mb-5'
+            ),
+            dbc.Row(
+                html.Hr(className="my-5")
+            ),
+            dbc.Row(
+                [
+                    dbc.Col(
+                        [
+                            M.specialty_scatter_title
+                        ],
+                    )
+                ],
             ),
             dbc.Row(
                 [
@@ -151,14 +163,13 @@ def render_member_tab_dashboard():
 
                     dbc.Col(className='col-3'),
                 ],
-                className='mb-4'
+                className='mt-4'
             ),
             dbc.Row(
                 [
                     dbc.Col(
                         [
                             dcc.Graph(id=ids.MEM_SPEC_SCATTER),
-
                         ],
                     ),
                 ],

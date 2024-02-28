@@ -12,6 +12,7 @@ from src.tab_views_member import (
     mem_graphs
 )
 
+from src.tab_views_member.mem_data_calculations import MemberCalculations, GridStats
 
 dash.register_page(__name__,
                    path='/member',
@@ -31,8 +32,8 @@ layout = dbc.Container(
     ]
 )
 
-
 """  RENDER TABS  """
+
 
 @callback(
     Output(ids.MEM_APP_CONTENT, 'children'),
@@ -63,4 +64,74 @@ def filter_store_data(member, store_data):
     return title, member, df_filtered
 
 
+@callback(
+    Output(ids.MEM_ANNUAL_CHARGE, 'children'),
+    Output(ids.MEM_ANNUAL_ITEMS, 'children'),
+    Output(ids.MEM_ANNUAL_AVERAGE, 'children'),
+    Output(ids.MEM_DASH_BAR_CHARGE, 'figure'),
+    Output(ids.MEM_DASH_BAR_CLAIMS, 'figure'),
+    Output(ids.MEM_DASH_PIE_FACILITY, 'figure'),
+    Output(ids.MEM_DASH_PIE_SPECIALTY, 'figure'),
+    Output(ids.MEM_DASH_BAR_PURPOSE, 'figure'),
 
+    Input(ids.STORE_DATA_FILTER, 'data')
+)
+def populate_dashboard(store_data_filter):
+    df = pd.DataFrame(store_data_filter)
+
+    member_table = MemberCalculations(df)
+
+    annual_charge = member_table.annual_charge_calc()
+    annual_charge = f'${annual_charge:,.0f}'
+
+    annual_line_items = member_table.annual_line_items_calc()
+    annual_line_items = f"{annual_line_items}"
+
+    annual_average = member_table.annual_average_charge()
+    annual_average = f'${annual_average:,.0f}'
+
+    bar1_table = member_table.charge_by_period()
+    bar1 = mem_graphs.make_dash_bar1(bar1_table)
+
+    bar2_table = member_table.claims_by_period()
+    bar2 = mem_graphs.make_dash_bar2(bar2_table)
+
+    pie1_table = member_table.charge_by_facility_class()
+    pie1 = mem_graphs.make_dash_pie1(pie1_table)
+
+    pie2_table = member_table.count_by_specialty()
+    pie2 = mem_graphs.make_dash_pie2(pie2_table)
+
+    bar3_table = member_table.charge_by_injury_disease()
+    bar3 = mem_graphs.make_dash_bar3(bar3_table)
+
+    return annual_charge, \
+           annual_line_items, \
+           annual_average, \
+           bar1, \
+           bar2, \
+           pie1, \
+           pie2, \
+           bar3
+
+
+@callback(
+    Output(ids.MEM_SPEC_BAR_CHARGE, 'figure'),
+    Output(ids.MEM_SPEC_SCATTER, 'figure'),
+    Input(ids.MEM_SPEC_BAR_RADIO, 'value'),
+    Input(ids.MEM_SPEC_SCATTER_RADIO, 'value'),
+
+    Input(ids.STORE_DATA_FILTER, 'data'),
+)
+def populate_dashboard_specialty(log_scale_bar, log_scale_scatter, store_data_filter):
+    df = pd.DataFrame(store_data_filter)
+
+    member_table = MemberCalculations(df)  # send data to Data_Calculations class
+    charge_count_bar_table = member_table.charge_count_spec8()  # call func to get DATA from Data_Calculations class
+    bar4 = mem_graphs.make_dash_bar4(charge_count_bar_table, log_scale_bar)  # Send data as arg to chart BUILD func
+
+    spec_list = member_table.spec_nlargest_list8()
+    scatter_table1 = member_table.spec_filter_to_list8()
+    scatter1 = mem_graphs.make_dash_scatter1(scatter_table1, spec_list, log_scale_scatter)
+
+    return bar4, scatter1
