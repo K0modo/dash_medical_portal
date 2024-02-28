@@ -1,8 +1,6 @@
-import dash
-from dash import Dash, html, dcc
+from dash import Dash
 import dash_bootstrap_components as dbc
 from dash_bootstrap_templates import load_figure_template
-import pandas as pd
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
@@ -37,5 +35,3 @@ app = Dash(__name__,
 load_figure_template('vapor')
 
 server = app.server
-
-

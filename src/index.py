@@ -4,8 +4,8 @@ import dash_bootstrap_components as dbc
 from nav_and_utilities import navigation, ids
 from member_store.member_data_loader import data_load
 
-
 from src.app import app
+from src.app import server
 
 app.layout = dbc.Container(
     [
