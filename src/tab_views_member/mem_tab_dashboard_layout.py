@@ -52,7 +52,7 @@ def render_member_tab_dashboard():
                         ]
                     )
                 ],
-                className='mb-5 row-cols-1 row-cols-sm-2 row-cols-lg-4 gy-2 justify-content-around',
+                className='row-cols-1 row-cols-sm-2 row-cols-lg-4 gy-2 mb-5 justify-content-around',
             ),
             dbc.Row(
                 html.Hr(className='mt-1 mb-5')
@@ -72,7 +72,7 @@ def render_member_tab_dashboard():
                         className='col-md-5 border border-primary border-3 p-0'
                     )
                 ],
-                className='justify-content-evenly mb-5'
+                className='row-cols-1 row-cols-sm-2 justify-content-evenly mb-5'
             ),
             dbc.Row(
                 [
@@ -89,7 +89,7 @@ def render_member_tab_dashboard():
                         className='col-md-5 border border-primary border-3 p-0'
                     )
                 ],
-                className='justify-content-evenly mb-5'
+                className='row-cols-1 row-cols-sm-2 justify-content-evenly mb-5'
             ),
             dbc.Row(
                 [

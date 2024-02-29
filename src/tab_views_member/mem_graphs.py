@@ -74,27 +74,6 @@ def make_dash_bar2(table):
     return fig
 
 
-def make_dash_bar3(table):
-    fig = px.bar(
-        table,
-        x=table['injury_disease'],
-        y=table['charge_allowed']
-    )
-
-    fig.update_layout(
-        title='Purpose of Medical Services - Count',
-        title_x=0.5,
-        title_font=title_font,
-        xaxis_title=None,
-        yaxis_title=None,
-        font=font,
-    )
-
-    fig.update_xaxes(
-        tickangle=45
-    )
-
-    return fig
 
 
 def make_dash_pie1(table):
@@ -130,6 +109,29 @@ def make_dash_pie2(table):
         title_x=0.5,
         title_font=title_font,
         showlegend=False,
+    )
+
+    return fig
+
+
+def make_dash_bar3(table):
+    fig = px.bar(
+        table,
+        x=table['injury_disease'],
+        y=table['charge_allowed']
+    )
+
+    fig.update_layout(
+        title='Injury or Disease Frequency',
+        title_x=0.5,
+        title_font=title_font,
+        xaxis_title=None,
+        yaxis_title=None,
+        font=font,
+    )
+
+    fig.update_xaxes(
+        tickangle=45
     )
 
     return fig

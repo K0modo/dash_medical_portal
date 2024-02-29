@@ -12,6 +12,6 @@ dash.register_page(__name__,
 
 layout = dbc.Container(
     [
-        "CORPORATE PAGE"
+        html.H1("CORPORATE PAGE - UNDER CONSTRUCTION", className='mt-5 text-primary text-center')
     ]
 )
