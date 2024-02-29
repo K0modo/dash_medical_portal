@@ -3,9 +3,20 @@ import pathlib
 
 PATH = pathlib.Path(__file__).parent
 
-data = pd.read_csv(PATH.joinpath('data_members.csv'))
-data_load = data.to_dict('records')
+cat_col_member = ['mem_acct',
+               'claim_item',
+               'injury_disease',
+               'specialty',
+               'facility_class',
+               'period'
+               ]
 
+data = pd.read_csv(PATH.joinpath('data_members.csv'), parse_dates=['charge_trans_date']).sort_values('mem_acct')
+data['trans_date'] = data['charge_trans_date'].dt.date
+for col in cat_col_member:
+    data[col] = data[col].astype('category')
+data_load = data.to_dict('records')
+# print(data.info())
 
 # # MEMBER DATA READ FUNCTIONS
 # def read_in_member_data(file, cat_col_mem):

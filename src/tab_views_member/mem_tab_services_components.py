@@ -18,7 +18,7 @@ statistics_grid_title = html.H3("Annual Member Statistics by Specialty",
                                 style={'color': '#32FBE2'}
                                 )
 
-statistics_grid_note = html.H5("Click on Row Data to see details below",
+statistics_grid_note = html.H5("**  Click on Row Data to see details below",
                                className='text-center',
                                style={'color': '#32FBE2'}
                                )

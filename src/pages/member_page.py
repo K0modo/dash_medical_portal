@@ -32,8 +32,10 @@ layout = dbc.Container(
     ]
 )
 
-"""  RENDER TABS  """
 
+##############################
+#   RENDER TABS
+##############################
 
 @callback(
     Output(ids.MEM_APP_CONTENT, 'children'),
@@ -46,6 +48,10 @@ def render_tab_content(tab_selected):
     else:
         return mem_tab_claims_layout.render_tab_claims_view()
 
+
+################################
+#   FILTER DATA STORE FOR MEMBER
+################################
 
 @callback(
     Output(ids.MEM_TITLE_DASHBOARD, 'children'),
@@ -63,6 +69,10 @@ def filter_store_data(member, store_data):
 
     return title, member, df_filtered
 
+
+#################################
+#   TAB DASHBOARD - CREATE CHARTS
+#################################
 
 @callback(
     Output(ids.MEM_ANNUAL_CHARGE, 'children'),
@@ -115,12 +125,15 @@ def populate_dashboard(store_data_filter):
            bar3
 
 
+################################################
+#   TAB DASHBOARD - CREATE CHARTS WITH LOG SCALE
+################################################
+
 @callback(
     Output(ids.MEM_SPEC_BAR_CHARGE, 'figure'),
     Output(ids.MEM_SPEC_SCATTER, 'figure'),
     Input(ids.MEM_SPEC_BAR_RADIO, 'value'),
     Input(ids.MEM_SPEC_SCATTER_RADIO, 'value'),
-
     Input(ids.STORE_DATA_FILTER, 'data'),
 )
 def populate_dashboard_specialty(log_scale_bar, log_scale_scatter, store_data_filter):
@@ -135,3 +148,41 @@ def populate_dashboard_specialty(log_scale_bar, log_scale_scatter, store_data_fi
     scatter1 = mem_graphs.make_dash_scatter1(scatter_table1, spec_list, log_scale_scatter)
 
     return bar4, scatter1
+
+
+#################################
+#   TAB SERVICES - GRIDS & CHARTS
+#################################
+
+@callback(
+    Output(ids.MEM_TITLE_SERVICES, 'children'),
+    Output(ids.MEM_SERV_GRID1, 'rowData'),
+    Output(ids.MEM_SERV_GRID1_TABLE, 'rowData'),
+    Output(ids.MEM_SERV_GRID1_GRAPH, 'figure'),
+    Input(ids.STORE_MEM_ACCT, 'data'),
+    Input(ids.STORE_DATA_FILTER, 'data'),
+    Input(ids.MEM_SERV_GRID1, 'selectedRows')
+)
+def display_services_stats(member, store_data_filter, selected_row):
+    df = pd.DataFrame(store_data_filter)
+
+    title = f'Medical Services for Member ID 000{member}'
+
+    mem_serv_stats = GridStats(df)
+    mem_serv_stats = mem_serv_stats.calc_serv_stats()
+    mem_serv_stats = mem_serv_stats.to_dict('records')
+
+    if selected_row is None:
+        specialty = 'General_Medicine'
+    else:
+        specialty = selected_row[0]['specialty']
+
+    mem_claim_hist = GridStats(df)
+    mem_claim_hist = mem_claim_hist.spec_claim_hist()
+    mem_claim_hist = mem_claim_hist[mem_claim_hist['specialty'] == specialty]
+    mem_claim_hist_graph = mem_graphs.make_member_specialty_bar(mem_claim_hist)
+
+    mem_claim_hist = mem_claim_hist.to_dict('records')
+
+    return title, mem_serv_stats, mem_claim_hist, mem_claim_hist_graph
+

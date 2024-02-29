@@ -100,7 +100,7 @@ def render_member_tab_dashboard():
                         className='col-md-8 border border-primary border-3 p-0'
                     ),
                 ],
-                className='justify-content-center'
+                className='justify-content-center mb-5'
             ),
             dbc.Row(
                 html.Hr(className="my-5")

@@ -1,11 +1,14 @@
 import dash
 from dash import dcc
 import dash_bootstrap_components as dbc
+
 from nav_and_utilities import navigation, ids
 from member_store.member_data_loader import data_load
 
 from src.app import app
 from src.app import server
+
+
 
 app.layout = dbc.Container(
     [
@@ -16,7 +19,8 @@ app.layout = dbc.Container(
         navigation.render_navbar(),
 
         dash.page_container
-    ]
+    ],
+    className='dbc dbc-ag-grid'
 )
 
 
