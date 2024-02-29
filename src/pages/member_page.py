@@ -164,10 +164,9 @@ def populate_dashboard_specialty(log_scale_bar, log_scale_scatter, store_data_fi
     Input(ids.MEM_SERV_GRID1, 'selectedRows')
 )
 def display_services_stats(member, store_data_filter, selected_row):
-    df = pd.DataFrame(store_data_filter)
-
     title = f'Medical Services for Member ID 000{member}'
 
+    df = pd.DataFrame(store_data_filter)
     mem_serv_stats = GridStats(df)
     mem_serv_stats = mem_serv_stats.calc_serv_stats()
     mem_serv_stats = mem_serv_stats.to_dict('records')
@@ -178,6 +177,7 @@ def display_services_stats(member, store_data_filter, selected_row):
         specialty = selected_row[0]['specialty']
 
     mem_claim_hist = GridStats(df)
+
     mem_claim_hist = mem_claim_hist.spec_claim_hist()
     mem_claim_hist = mem_claim_hist[mem_claim_hist['specialty'] == specialty]
     mem_claim_hist_graph = mem_graphs.make_member_specialty_bar(mem_claim_hist)
@@ -186,3 +186,24 @@ def display_services_stats(member, store_data_filter, selected_row):
 
     return title, mem_serv_stats, mem_claim_hist, mem_claim_hist_graph
 
+
+#################################
+#   TAB CLAIMS - GRID
+#################################
+
+@callback(
+    Output(ids.MEM_TITLE_CLAIMS, 'children'),
+    Output(ids.MEM_CLAIMS_GRID, 'rowData'),
+    Input(ids.STORE_MEM_ACCT, 'data'),
+    Input(ids.STORE_DATA_FILTER, 'data')
+)
+def display_claims(member, store_data_filter):
+    title = f'Medical Claims for Member ID 000{member}'
+
+    df = pd.DataFrame(store_data_filter)
+    mem_claims_detail = GridStats(df)
+
+    mem_claims_detail = mem_claims_detail.get_member_claim_detail()
+    mem_claims_detail = mem_claims_detail.to_dict('records')
+
+    return title, mem_claims_detail

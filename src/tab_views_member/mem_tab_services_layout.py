@@ -42,7 +42,8 @@ def render_tab_services_view():
                             S.statistics_grid
                         ]
                     )
-                ]
+                ],
+                className='mb-2'
             ),
             dbc.Row(
                 [
@@ -68,7 +69,7 @@ def render_tab_services_view():
                         ],
                     )
                 ],
-                className='d-flex align-items-end mt-5'
+                className='d-flex align-items-end mt-4'
             ),
             dbc.Row(
                 [

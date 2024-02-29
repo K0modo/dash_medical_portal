@@ -18,7 +18,7 @@ statistics_grid_title = html.H3("Annual Member Statistics by Specialty",
                                 style={'color': '#32FBE2'}
                                 )
 
-statistics_grid_note = html.H5("**  Click on Row Data to see details below",
+statistics_grid_note = html.H5("**  Click on Row Data >> Details in Grid/Chart Below",
                                className='text-center',
                                style={'color': '#32FBE2'}
                                )
@@ -39,7 +39,7 @@ statistics_grid = dag.AgGrid(
 )
 
 
-specialty_claims_section_title = html.H3("Selected Specialty Information",
+specialty_claims_section_title = html.H3("Selected Specialty Information (From Row Clicked Above **)",
                                          className='text-center text-decoration-underline pb-3',
                                          style={'color': '#32FBE2'}
                                          )

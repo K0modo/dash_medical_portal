@@ -58,7 +58,7 @@ def make_dash_bar2(table):
         title_font=title_font,
         xaxis_title='Period',
         yaxis=yaxis_comma,
-        yaxis_title='# Claims',
+        yaxis_title=None,
         font=font,
     )
 
@@ -206,9 +206,6 @@ def make_dash_scatter1(table, spec_list, log_scale):
                      )
 
     fig.update_layout(
-        # title='Line Item Charges by Specialty',
-        # title_x=0.5,
-        # title_font=title_font,
         font=font,
     )
 
