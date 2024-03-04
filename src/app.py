@@ -10,7 +10,7 @@ dbc_css = "https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates/dbc.mi
 
 
 class Config(object):
-    SQLALCHEMY_DATABASE_URI = "sqlite:///app.db"
+    SQLALCHEMY_DATABASE_URI = "sqlite:///../db_tynan"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
