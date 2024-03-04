@@ -18,7 +18,7 @@ member_dropdown_box = dbc.Container(
     [
         dbc.Row(
             dbc.Col(
-                html.H4('Select Member',
+                html.H4('Select Your Member ID',
                         className='text-secondary text-center mt-3'
                         )
             )
