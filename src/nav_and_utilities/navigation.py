@@ -2,7 +2,7 @@ from dash import html, Input, Output, State, callback
 import dash_bootstrap_components as dbc
 
 
-navlink_class_menu = 'fs-4 fst-italic'
+navlink_class_menu = 'fs-3 fst-italic fw-bolder'
 
 
 def render_navbar():
