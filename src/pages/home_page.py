@@ -12,7 +12,7 @@ dash.register_page(__name__,
 member_card = dbc.Card(
     [
         dbc.CardImg(src='assets/images/member1.jfif', alt='healthcare_binder', top=True,
-                    style={'width': '100%', 'height':'15vw', 'object-fit':'cover'}),
+                    style={'width': '100%', 'height': '15vw', 'object-fit': 'cover'}),
         dbc.CardBody(
             [
                 html.H4("Membership", className='card-title text-center'),
@@ -27,7 +27,7 @@ member_card = dbc.Card(
                 ),
                 html.Div(
                     [
-                        dbc.Button('LOG IN', href='/member',  className='mt-4')
+                        dbc.Button('LOG IN', href='/member', className='mt-4')
                     ],
                     className='d-flex justify-content-center'
                 )
@@ -40,7 +40,7 @@ member_card = dbc.Card(
 corporate_card = dbc.Card(
     [
         dbc.CardImg(src='assets/images/admin1.jfif', alt='administration', top=True,
-                    style={'width': '100%', 'height':'15vw', 'object-fit':'cover'}),
+                    style={'width': '100%', 'height': '15vw', 'object-fit': 'cover'}),
         dbc.CardBody(
             [
                 html.H4("Corporate", className='card-title text-center'),
@@ -55,7 +55,7 @@ corporate_card = dbc.Card(
                 ),
                 html.Div(
                     [
-                        dbc.Button('LOG IN', href='/corporate',  className='mt-4')
+                        dbc.Button('LOG IN', href='/corporate', className='mt-4')
                     ],
                     className='d-flex justify-content-center'
                 )
@@ -68,7 +68,7 @@ corporate_card = dbc.Card(
 analytics_card = dbc.Card(
     [
         dbc.CardImg(src='assets/images/data1.jfif', alt='healthcare_binder', top=True,
-                    style={'width': '100%', 'height':'15vw', 'object-fit':'cover'}),
+                    style={'width': '100%', 'height': '15vw', 'object-fit': 'cover'}),
         dbc.CardBody(
             [
                 html.H4("Analytics", className='card-title text-center'),
@@ -111,4 +111,3 @@ layout = dbc.Container(
     ],
     className='mt-1'
 )
-

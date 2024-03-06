@@ -15,13 +15,12 @@ from src.nav_and_utilities import ids
 from src.app import db
 import sqlalchemy as sa
 from src.postgres_sql_data.orm_models import (
-                            DailyClaims, DailyMember,
-                            PeriodSummary, PeriodMember, MemberSummary,
-                            InjuryDiseaseSummary, InjuryDiseaseRacing,
-                            SpecialtySummary, SpecialtyRacing,
-                            FacilitySummary, FacilityRacing
+    DailyClaims, DailyMember,
+    PeriodSummary, PeriodMember, MemberSummary,
+    InjuryDiseaseSummary, InjuryDiseaseRacing,
+    SpecialtySummary, SpecialtyRacing,
+    FacilitySummary, FacilityRacing
 )
-
 
 dash.register_page(__name__,
                    path='/corporate',
@@ -29,7 +28,6 @@ dash.register_page(__name__,
                    title='Corporate',
                    description='Corporate Level Claim Data'
                    )
-
 
 layout = dbc.Container(
     [
@@ -42,6 +40,7 @@ layout = dbc.Container(
         )
     ]
 )
+
 
 # Callback 1 - Call for Tabs (Default is CORP_TAB_DASHBOARD)
 # Data is retrieved from PostgresSQL tables using SQLAlchemy ORM Classes (orm_models.py)
@@ -94,7 +93,8 @@ def update_graph(period_chosen):
                                                .where(PeriodSummary.period == period_chosen)).scalar())
     daily_claims_average = f"{daily_claims_average:,.0f}"
 
-    daily_claims_sum = (db.session.execute(db.select(PeriodSummary.claims_period_count).where(PeriodSummary.period == period_chosen)).scalar())
+    daily_claims_sum = (db.session.execute(
+        db.select(PeriodSummary.claims_period_count).where(PeriodSummary.period == period_chosen)).scalar())
     daily_claims_sum = f"{daily_claims_sum:,.0f}"
 
     # ROW 1 - COLUMN 2
@@ -110,7 +110,6 @@ def update_graph(period_chosen):
     annual_claims_sum = (db.session.execute(db.select(PeriodSummary.claims_period_count_cum)
                                             .where(PeriodSummary.period == 12)).scalar())
     annual_claims_sum = f"{annual_claims_sum:,.0f}"
-
 
     # ROW 2 - MEDICAL CLAIMS PAID
     #############################
@@ -141,7 +140,6 @@ def update_graph(period_chosen):
     annual_paid_sum = (db.session.execute(db.select(PeriodSummary.claims_period_paid_cum)
                                           .where(PeriodSummary.period == 12)).scalar())
     annual_paid_sum = f"${annual_paid_sum:,.0f}"
-
 
     # ROW 3 - MEMBER PARTICIPATION
     ##############################
@@ -174,11 +172,11 @@ def update_graph(period_chosen):
     annual_member_sum = f"{annual_member_sum:,.0f}"
 
     return daily_claims_chart, daily_claims_average, daily_claims_sum, \
-           annual_claims_chart, annual_claims_average, annual_claims_sum, \
-           daily_paid_chart, daily_paid_average, daily_paid_sum, \
-           annual_paid_chart, annual_paid_average, annual_paid_sum, \
-           daily_member_chart, daily_member_average, daily_member_sum, \
-           annual_member_chart, annual_member_average, annual_member_sum
+        annual_claims_chart, annual_claims_average, annual_claims_sum, \
+        daily_paid_chart, daily_paid_average, daily_paid_sum, \
+        annual_paid_chart, annual_paid_average, annual_paid_sum, \
+        daily_member_chart, daily_member_average, daily_member_sum, \
+        annual_member_chart, annual_member_average, annual_member_sum
 
 
 @callback(
@@ -203,7 +201,8 @@ def update_services_icd(val):
 
         # RACING CHART
         icd_racing_table = db.session.execute(db.select(InjuryDiseaseRacing.name, InjuryDiseaseRacing.period,
-                                      InjuryDiseaseRacing.color_code,InjuryDiseaseRacing.claim_count_ytd))
+                                                        InjuryDiseaseRacing.color_code,
+                                                        InjuryDiseaseRacing.claim_count_ytd))
         icd_racing_table = pd.DataFrame(icd_racing_table)
         icd_racing_chart = corp_graphs.make_services_icd_racing_chart(icd_racing_table)
 
@@ -227,7 +226,8 @@ def update_services_icd(val):
         # RACING CHART
 
         specialty_racing_table = db.session.execute(db.select(SpecialtyRacing.name, SpecialtyRacing.period,
-                                                              SpecialtyRacing.color_code, SpecialtyRacing.claim_count_ytd))
+                                                              SpecialtyRacing.color_code,
+                                                              SpecialtyRacing.claim_count_ytd))
         specialty_racing_table = pd.DataFrame(specialty_racing_table)
         specialty_racing_table = specialty_racing_table[specialty_racing_table['name'] != 'Hospital_Clinic']
         specialty_racing_chart = corp_graphs.make_services_specialty_racing_chart(specialty_racing_table)
@@ -236,10 +236,10 @@ def update_services_icd(val):
 
     else:
         facility_table = (db.session.execute(db.select(FacilitySummary.name, FacilitySummary.claim_count,
-                                                        FacilitySummary.claim_paid,
-                                                        FacilitySummary.color_code)
-                                              .order_by(FacilitySummary.claim_count))
-                           )
+                                                       FacilitySummary.claim_paid,
+                                                       FacilitySummary.color_code)
+                                             .order_by(FacilitySummary.claim_count))
+                          )
         facility_table = pd.DataFrame(facility_table)
         facility_table = facility_table[facility_table['name'] != 'Hospital']
         facility_table = facility_table.nlargest(5, 'claim_count').sort_values('claim_count')
@@ -252,7 +252,7 @@ def update_services_icd(val):
         # RACING CHART
 
         facility_racing_table = db.session.execute(db.select(FacilityRacing.name, FacilityRacing.period,
-                                                              FacilityRacing.color_code,
+                                                             FacilityRacing.color_code,
                                                              FacilityRacing.claim_count_ytd))
         facility_racing_table = pd.DataFrame(facility_racing_table)
         facility_racing_table = facility_racing_table[facility_racing_table['name'] != 'Hospital']

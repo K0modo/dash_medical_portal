@@ -116,13 +116,13 @@ def populate_dashboard(store_data_filter):
     bar3 = mem_graphs.make_dash_bar3(bar3_table)
 
     return annual_charge, \
-           annual_line_items, \
-           annual_average, \
-           bar1, \
-           bar2, \
-           pie1, \
-           pie2, \
-           bar3
+        annual_line_items, \
+        annual_average, \
+        bar1, \
+        bar2, \
+        pie1, \
+        pie2, \
+        bar3
 
 
 ################################################
