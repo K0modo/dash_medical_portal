@@ -24,7 +24,9 @@ Project Code Structure
 The project code is found in the src directory.  The application is run from the index.py file but imports the Dash application and Flask server from the app.py file.  The index.py file provides the "container" to receive for each web page.
 
 - The user website entry point is the Home page with links to Members, Corporate and Analytics and are found in the src.Pages directory.
-Each page (e.g. member_page.py) has a complimentary "tab_view" directory (e.g. tab_view_member).  The "view" is what the user "views" when a tab/link is clicked.
+Each page (e.g. member_page.py) has a complimentary "tab_view" directory (e.g. tab_view_member).  The "view" is what the user "views" when a tab/link is clicked.  For example:
+  - pages
+    - member_page
   - tab_views_member
     - mem_data_calculations (data classes used to calucalate and manipulate data)
     - mem_graphs (functions to create graphs)
