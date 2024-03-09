@@ -38,6 +38,9 @@ Each page (e.g. member_page.py) has a complimentary "tab_view" directory (e.g. t
     - assets (images and stylesheets)
     - member_store (csv file and application data loader for members)
     - nav_and_utilities(page links and component id
-    - postgres_sql_data (SQLAlchemy-ORM Declarative Base Class) 
+    - postgres_sql_data (SQLAlchemy-ORM Declarative Base Class)
 
 The data is stored in a SQLite data file (db_tynan).  The application was originally designed to interact with a Postgres SQL database but was reconfigured to use a lighter weight database for website demonstration purposes.
+
+
+
