@@ -29,8 +29,8 @@ Each page (e.g. member_page.py) has a complimentary "tab_view" directory (e.g. t
     - mem_data_calculations (data classes used to calucalate and manipulate data)
     - mem_graphs (functions to create graphs)
     - mem_grids (functions to create AG-Grid tables)
-    - mem_tab_xxx_components (creation of HTML/CSS components)
-    - mem_tab_xxx_layout (HTML layout of components)
+    - mem_tab_xxx_components (styled HTML/CSS components such as graphs, grids, titles, etc.)
+    - mem_tab_xxx_layout (HTML layout for mem_tab_xxx_components)
     - mem_tabs_menu (all tabs associated with "member" page)
   - other directories
     - assets (images and stylesheets)
