@@ -1,6 +1,6 @@
 Welcome,
 
-This is a Python-Dash based multi-page website that I developed while learning Python and Web Development. The concept for this website emanates from a career of working as a Certified Public Accountant (CPA) in various industries. The website is not intended to be a deep dive into the needs of a company but merely a framework.  With that said, this tool is geared for a healthcare insurance company that offers a portal for it's members, managers and analysts to view common data...of course permissions would limit accessibility for each gateway.
+This is a Python-Dash based multi-page website that I developed while learning Python and Web Development. The concept for this website emanates from a career of working as a Certified Public Accountant (CPA) in various industries. The website is not intended to be a deep dive into the needs of a company but merely a framework.  With that said, this tool is geared for a healthcare insurance company that offers a portal for it's members, managers and analysts to view common data...of course permissions would limit accessibility for each gateway.  The data is all ficticious but does represent realities during the COVID time frame.
 
 The website is built with Flask for a Dash Plotly application utilizing SQLAlchemy, Dash Plotly, Pandas and AG-Grid.  The Corporate data is stored/extracted from a PostgreSQL/SQLite database. Data for the Members is extracted from csv and stored on the users browser using a Dash Core Component (dcc.Store).
 
@@ -34,13 +34,13 @@ Each page (e.g. member_page.py) has a complimentary "tab_view" directory (e.g. t
     - mem_tab_xxx_components (styled HTML/CSS components such as graphs, grids, titles, etc.)
     - mem_tab_xxx_layout (HTML layout for mem_tab_xxx_components)
     - mem_tabs_menu (all tabs associated with "member" page)
-  - other directories
+  - other global directories
     - assets (images and stylesheets)
     - member_store (csv file and application data loader for members)
     - nav_and_utilities(page links and component id
     - postgres_sql_data (SQLAlchemy-ORM Declarative Base Class) 
 
-The data is stored in a SQLite data file (db_tynan).  The application was originally designed to interact with a Postgres SQL database but was reconfigured to use a lighter weight database for website demonstration purposes.  The member id and provider codes are fictitious.
+The data is stored in a SQLite data file (db_tynan).  The application was originally designed to interact with a Postgres SQL database but was reconfigured to use a lighter weight database for website demonstration purposes.
 
 
 
