@@ -26,17 +26,17 @@ The project code is found in the src directory.  The application is run from the
 - The user website entry point is the Home page with links to Members, Corporate and Analytics and are found in the src.Pages directory.
 Each page (e.g. member_page.py) has a complimentary "tab_view" directory (e.g. tab_view_member).  The "view" is what the user "views" when a tab/link is clicked.
   - tab_views_member
-    -- mem_data_calculations (data classes used to calucalate and manipulate data)
-    -- mem_graphs (functions to create graphs)
-    -- mem_grids (functions to create AG-Grid tables)
-    -- mem_tab_xxx_components (creation of HTML/CSS components)
-    -- mem_tab_xxx_layout (HTML layout of components)
-    -- mem_tabs_menu (all tabs associated with "member" page)
+    - mem_data_calculations (data classes used to calucalate and manipulate data)
+    - mem_graphs (functions to create graphs)
+    - mem_grids (functions to create AG-Grid tables)
+    - mem_tab_xxx_components (creation of HTML/CSS components)
+    - mem_tab_xxx_layout (HTML layout of components)
+    - mem_tabs_menu (all tabs associated with "member" page)
   - other directories
-    -- assets (images and stylesheets)
-    -- member_store (csv file and application data loader for members)
-    -- nav_and_utilities(page links and component id
-    -- postgres_sql_data (SQLAlchemy-ORM Declarative Base Class) 
+    - assets (images and stylesheets)
+    - member_store (csv file and application data loader for members)
+    - nav_and_utilities(page links and component id
+    - postgres_sql_data (SQLAlchemy-ORM Declarative Base Class) 
 
 The data is stored in a SQLite data file (db_tynan).  The application was originally designed to interact with a Postgres SQL database but was reconfigured to use a lighter weight database for website demonstration purposes.  The member id and provider codes are fictitious.
 
